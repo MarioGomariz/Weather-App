@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# 🌤️ Modern Weather App — React + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación de clima de nivel profesional construida con un enfoque en **Arquitectura Limpia**, rendimiento optimizado y experiencia de usuario fluida. Este proyecto demuestra el manejo avanzado de estados de servidor, integración de APIs de terceros y hooks personalizados.
 
-Currently, two official plugins are available:
+![Versión](https://img.shields.io/badge/version-1.0.0-blue)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![TanStack Query](https://img.shields.io/badge/-TanStack%20Query-FF4154?style=flat&logo=react-query&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Características Principales
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Búsqueda por Ciudad**: Consulta en tiempo real el clima de cualquier ciudad del mundo.
+- **📍 Geolocalización**: Acceso al clima local mediante la API nativa del navegador con un solo clic.
+- **⚡ Búsqueda Optimizada**: Implementación de **Debouncing** para reducir llamadas innecesarias a la API mientras el usuario escribe.
+- **📦 Caché Inteligente**: Gestión de estado del servidor mediante **TanStack Query** (5 min de staleTime).
+- **🎨 UI/UX Senior**:
+  - Modo oscuro nativo.
+  - **Skeleton Loaders** dinámicos para una carga visual fluida.
+  - Manejo exhaustivo de estados (Carga, Error 404, Ubicación denegada, Estado vacío).
+- **🛡️ Tipado Estricto**: Uso de interfaces de TypeScript en toda la aplicación para máxima seguridad de tipos.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Stack Tecnológico
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
+- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
+- **Data Fetching**: [TanStack Query (React Query)](https://tanstack.com/query/latest)
+- **API**: [OpenWeatherMap API](https://openweathermap.org/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📐 Arquitectura del Proyecto
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El proyecto sigue principios de **Clean Architecture** y **SOLID**:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```text
+src/
+├── components/     # Componentes de UI atómicos y reutilizables
+├── hooks/          # Lógica personalizada (useWeather, useGeolocation, useDebounce)
+├── services/       # Capa de servicios (Data Mapping de API a Interfaz)
+├── types/          # Definición de interfaces y tipos globales
+└── App.tsx         # Orquestador principal de la lógica
