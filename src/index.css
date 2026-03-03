@@ -51,7 +51,11 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
   background: var(--background);
   color: var(--text-primary);
@@ -60,6 +64,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   min-height: 100vh;
+  position: relative; /* Base for ambient gradients */
 }
 
 /* ============================================= */
@@ -76,12 +81,47 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
+  /* Removed position relative to allow gradients across whole screen */
+}
+
+/* ============================================= */
+/* BACKGROUND GRADIENTS (Tron Red Style) */
+/* ============================================= */
+
+.weather-bg-gradient-top {
+  position: fixed; /* Changed to fixed so it stays when scrolling */
+  top: -20vh;
+  left: -10vw;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50%;
+  background-color: var(--primary-dark);
+  opacity: 0.2;
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.weather-bg-gradient-bottom {
+  position: fixed; /* Changed to fixed so it stays when scrolling */
+  bottom: -20vh;
+  right: -10vw;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50%;
+  background-color: var(--primary);
+  opacity: 0.1;
+  filter: blur(130px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .weather-header {
-  background: var(--background-secondary);
+  background: rgba(26, 26, 26, 0.75); /* --background-secondary with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(42, 42, 42, 0.6); /* --border-color with opacity */
   padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow-sm);
   animation: fadeIn 0.3s ease;
@@ -124,8 +164,10 @@ body {
 }
 
 .weather-location-button {
-  background: var(--background-secondary);
-  border: 2px solid var(--border-color);
+  background: rgba(26, 26, 26, 0.6); /* --background-secondary with opacity */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(42, 42, 42, 0.8);
   border-radius: 12px;
   min-width: 3rem;
   height: 3rem;
@@ -168,8 +210,10 @@ body {
 }
 
 .weather-search-bar {
-  background: var(--background-card);
-  border: 2px solid var(--border-color);
+  background: rgba(30, 30, 30, 0.6); /* --background-card with opacity */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(42, 42, 42, 0.8);
   border-radius: 12px;
   color: var(--text-primary);
   padding: 1rem 1.25rem 1rem 3.5rem;
@@ -223,8 +267,10 @@ body {
 /* ============================================= */
 
 .weather-card {
-  background: var(--background-card);
-  border: 1px solid var(--border-color);
+  background: rgba(30, 30, 30, 0.65); /* --background-card with opacity */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(42, 42, 42, 0.6);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
   box-shadow: var(--shadow-md);
@@ -324,8 +370,10 @@ body {
 }
 
 .weather-detail-item {
-  background: var(--background-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(26, 26, 26, 0.6); /* --background-secondary with opacity */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(42, 42, 42, 0.5);
   border-radius: 10px;
   padding: 0.875rem 1rem;
   transition: all 0.3s ease;
@@ -407,8 +455,10 @@ body {
 }
 
 .weather-forecast-item {
-  background: var(--background-card);
-  border: 1px solid var(--border-color);
+  background: rgba(30, 30, 30, 0.5); /* --background-card with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(42, 42, 42, 0.5);
   border-radius: 12px;
   padding: 1.5rem;
   min-width: 140px;
@@ -457,9 +507,11 @@ body {
 /* ============================================= */
 
 .weather-button {
-  background: var(--primary);
+  background: rgba(255, 58, 65, 0.85); /* --primary with opacity */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: white;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 1rem 2rem;
   font-weight: 600;
@@ -486,9 +538,11 @@ body {
 }
 
 .weather-button-secondary {
-  background: var(--background-secondary);
+  background: rgba(26, 26, 26, 0.6); /* --background-secondary with opacity */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(42, 42, 42, 0.8);
 }
 
 .weather-button-secondary:hover {
@@ -553,8 +607,10 @@ body {
 /* ============================================= */
 
 .weather-error {
-  background: rgba(255, 58, 65, 0.1);
-  border: 1px solid var(--error);
+  background: rgba(255, 58, 65, 0.15); /* Tint with opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 58, 65, 0.3); /* --error with opacity */
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
